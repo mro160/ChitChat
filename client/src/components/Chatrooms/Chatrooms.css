@@ -1,0 +1,21 @@
+.box {
+	text-align: start;
+}
+
+.button {
+	margin-top: 1rem;
+}
+
+.room-link{
+	padding-bottom: 2em;
+	margin-bottom: 	1.5em;
+}
+
+.room-link:hover {
+	background-color: #FFF;
+}
+
+.inbox-menu {
+	height: 100vh;
+	padding: 1rem;
+}

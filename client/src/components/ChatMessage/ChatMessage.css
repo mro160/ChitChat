@@ -1,0 +1,49 @@
+.msg div {
+
+}
+
+.msg {
+	white-space: nowrap;
+	width: min-content;
+	border-radius: 15px;
+	
+}
+.incoming-message{
+	align-self: flex-end;
+	padding-left: 10rem;
+	margin-left: 15rem;
+}
+
+.incoming{
+	text-align: right;
+}
+
+.outgoing {
+	padding-right: 10rem;
+	margin-right: 15rem;
+}
+
+.timestamp{
+	display: inline-block;
+}
+
+.box {
+	display: flexbox;
+}
+
+.chat-bubble{
+	margin-bottom: 1.5rem;
+	border: 5px;
+	border-radius: 25px;
+	word-break: break-all;
+	white-space: normal;
+	padding: 1rem;
+	min-width: 100px;
+}
+
+.txt{
+	word-break: break-all;
+	white-space: normal;
+	padding: 1rem;
+	padding-bottom: 1rem;
+}

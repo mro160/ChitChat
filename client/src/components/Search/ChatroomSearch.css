@@ -1,0 +1,28 @@
+.pad {
+	padding: 1.5rem;
+}
+
+.card {
+	padding: 0.75rem;
+	min-width: 10rem;
+}
+
+.searchbar {
+	border: none;
+	width: 50rem;
+	height: 2rem;
+	background-color: hsl(0, 0%, 99%);
+	padding-left: 10px;
+	height: 50px;
+}
+
+input:focus {
+	outline: none;
+	color: hsl(0, 100%, 1%);
+}
+
+.card-title {
+	font-weight: 600;
+}
+
+
