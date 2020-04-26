@@ -32,10 +32,10 @@ class App extends Component {
       messageList: [
 
       ],
-      endpoint: "/socket.io"  
+      endpoint: "/sockets"  
     }
 
-    socket = io('ws://localhost:3001', { path : this.state.endpoint, transports: ['websocket']})
+    socket = io('', { path : "/sockets", })
 
     this.deleteChatroom = this.deleteChatroom.bind(this);
   }
