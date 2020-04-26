@@ -39,9 +39,6 @@ class Register extends Component{
 	
 	Register = (event) =>{
 		event.preventDefault();
-		let inbox = [];
-		let usersCreatedRooms = [];
-
 		fetch('/register', {
 			method : 'POST',
 			headers: {'Content-Type' : 'application/json'},
