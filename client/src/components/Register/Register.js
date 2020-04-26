@@ -39,6 +39,9 @@ class Register extends Component{
 	
 	Register = (event) =>{
 		event.preventDefault();
+		let inbox = [];
+		let usersCreatedRooms = [];
+
 		fetch('/register', {
 			method : 'POST',
 			headers: {'Content-Type' : 'application/json'},
@@ -57,15 +60,30 @@ class Register extends Component{
 			return user;
 		})
 		.then((user) => {
-			fetch(`/users/${user.id}/chatrooms`, {
+			let inbox = [];
+			let usersCreatedRooms = [];
+
+			fetch(`/users/${user.id}/subscriptions`, {
 					method : 'GET',
 					headers: {'Content-Type' : 'application/json'},
+			})
+			.then(res => res.json())
+			.then(chatrooms => {
+				inbox = chatrooms;
+			})
+			.then(() =>{
+				fetch(`/users/${user.id}/chatrooms`, {
+						method : 'GET',
+						headers: {'Content-Type' : 'application/json'},
 				})
 				.then(res => res.json())
-				.then(chatrooms => {
-					this.props.loadChatrooms(chatrooms);
+				.then(rooms => {
+					usersCreatedRooms = rooms;
+					this.props.loadChatrooms(inbox, usersCreatedRooms);
 				})
 				.catch(err => console.log(err));
+			})
+			.catch(err => console.log(err));
 		})
 		.then(() => {
 			this.props.redirect('/dashboard');
