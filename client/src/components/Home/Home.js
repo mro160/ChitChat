@@ -29,7 +29,7 @@ const Home = (props) => {
 					  </div>
 	    			</div>
 	    		</div>
-	    		<p className='column is-offset-2 has-text-white-ter has-text-weight-light is-size-3 has-text-centered'>Search for existing chatrooms or create your own
+	    		<p className='column is-offset-2 has-text-white-ter has-text-weight-light is-size-3 has-text-centered'>search for existing chatrooms or create your own
 	    		</p>
 	    	</div>
 	    	<div className='container is-fluid columns is-centered is-vcentered'>
@@ -42,7 +42,7 @@ const Home = (props) => {
 					  </div>
 	    			</div>
 	    		</div>
-	    		<p className='column is-offset-2 has-text-white-ter has-text-weight-light is-size-3 has-text-centered'>Manage Your Chatrooms
+	    		<p className='column is-offset-2 has-text-white-ter has-text-weight-light is-size-3 has-text-centered'>manage your chatrooms
 	    		</p>
 	    	</div>
 
@@ -56,7 +56,7 @@ const Home = (props) => {
 					  </div>
 	    			</div>
 	    		</div>
-	    		<p className='column is-offset-2 has-text-white-ter has-text-weight-light is-size-3 has-text-centered'>Chat with Friends
+	    		<p className='column is-offset-2 has-text-white-ter has-text-weight-light is-size-3 has-text-centered'>chat with friends
 	    		</p>
 	    	</div>
 
