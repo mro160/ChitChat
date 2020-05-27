@@ -3,3 +3,18 @@
 	border: none ;
 	color: white;
 }
+
+.feature {
+	min-height: 50rem;
+	margin-top: 15rem;
+	margin-bottom: 15rem;
+}
+
+.card{
+	padding: 3px;
+}
+
+.img-container{
+	padding-left: 2rem;
+	padding-right: 2rem;
+}

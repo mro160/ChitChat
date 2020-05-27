@@ -313,6 +313,7 @@ class App extends Component {
       })
      .then(res => res.json())
      .then(room => {
+        
           let updatedUser = this.state.user;
           room['creator_id'] = this.state.user.id;
           room['creator'] = this.state.user.username;
@@ -393,7 +394,7 @@ class App extends Component {
   render(){
     return (
       <Router history={history}>
-      <div className='App parallax'>
+      <div className='App'>
         <NavBar 
           user={this.state.user}
           logOut={this.logOut}

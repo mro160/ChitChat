@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 
@@ -7,21 +7,23 @@ const Buttons = (props) => {
     return (
       <div className='navbar-item'>
       <div className='navbar-item'>       
-        <Link to='/register' className=' has-text-grey has-text-weight-light pl-2'>
+        <Link to='/register' className='has-text-white has-text-weight-light pl-2' onClick={() =>props.hidemenu()}>
          Sign up
         </Link>
       </div>
       <div className='navbar-item'>
-        <Link to='/login' className='has-text-grey has-text-weight-light'>
+        <Link to='/login' className='has-text-white has-text-weight-light' onClick={()=>props.hidemenu()}>
           Log in
         </Link>
       </div>
       </div>
     );
   } else return (
-    <a className='button is-light' onClick={props.logOut} href='/'>
-      Logout
-    </a>
+    <div className="navbar-item">
+      <Link to='/' className='has-text-white has-text-weight-light' onClick={props.logOut} >
+        Logout
+      </Link>
+    </div>
   );
 }
 
@@ -29,61 +31,82 @@ const Buttons = (props) => {
 const ConditionalLink = (props) => {
   if (props.user !== ''){
     return (
-      <Link to={{ pathname: props.pathname }} className='navbar-item has-text-grey has-text-weight-light' >
+      <Link to={{ pathname: props.pathname }} className='navbar-item has-text-white has-text-weight-light' onClick={()=>props.hidemenu()} >
         {props.linkname}
       </Link>
     );
   } else return '';
 }
 
-const NavBar = (props) => {
-    return (
-     <nav className='navbar shadow columns' role='navigation' aria-label='main navigation'>
 
-      <div id='navbarBasicExample' className='navbar-center column is-offset-3'>
-        <div className='navbar-item'>
-        <Link className='has-text-grey has-text-weight-light' to='/'>
+class NavBar extends Component {
+    constructor(props){
+    super(props);
+      this.state = {
+        active: ''
+      }
+    }
+
+  toggleMenu = (e) => {
+    if (this.state.active === ""){
+      this.showMenu(e);
+    } else {
+      this.hideMenu(e);
+    }
+  } 
+
+  showMenu = () => {
+
+    this.setState({
+      active: 'is-active'
+    })
+  }
+
+  hideMenu = () => {
+    this.setState({
+        active: ''
+    })
+  }
+    render(){
+    return (
+     <nav className='navbar shadow is-fixed-top' role='navigation' aria-label='main navigation'>
+     
+        <a role="button"
+           href="#" 
+           className="navbar-burger" 
+           aria-label="menu" 
+           aria-expanded="false" 
+           data-target="navbarBasicExample" 
+           onClick={this.toggleMenu}
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+
+      <div id='navbarBasicExample' className={'navbar-menu' + this.state.active}>
+
+        <Link className='navbar-start navbar-item has-text-white has-text-weight-light' to='/' onClick={()=>this.hideMenu()}>
           Home 
         </Link>
 
-        <ConditionalLink user={props.user} linkname={'Dashboard'} pathname={'/dashboard'}/>
-        <ConditionalLink user={props.user} linkname={'Inbox'} pathname={'/chatrooms'}/>
-        <ConditionalLink user={props.user} linkname={'Manage Rooms'} pathname={'/manage'}/>
-
-          <div className='navbar-item has-dropdown is-hoverable'>
-            <Link className='navbar-link has-text-grey has-text-weight-light' to='/'>
-              More
-            </Link>
-
-            <div className='navbar-dropdown'>
-              <Link className='navbar-item'  to='/'>
-                About
-              </Link>
-              <Link className='navbar-item'  to='/'>
-                Jobs
-              </Link>
-              <Link className='navbar-item'  to='/'>
-                Contact
-              </Link>
-              <hr className='navbar-divider' />
-              <Link className='navbar-item'  to='/'>
-                Report an issue
-              </Link>
-            </div>
-          </div>
-
-          <div className='navbar-end'>
-              <Buttons 
-                user={props.user}
-                logOut={props.logOut}
+        <ConditionalLink user={this.props.user} linkname={'Dashboard'} pathname={'/dashboard'} hidemenu={this.hideMenu}/>
+        <ConditionalLink user={this.props.user} linkname={'Inbox'} pathname={'/chatrooms'} hidemenu={this.hideMenu}/>
+        <ConditionalLink user={this.props.user} linkname={'Manage Rooms'} pathname={'/manage'} hidemenu={this.hideMenu}/>
+     
+             <div className='navbar-end'>
+              <Buttons
+                hidemenu={this.hideMenu} 
+                user={this.props.user}
+                logOut={this.props.logOut}
               />
           </div>
-        </div>
 
       </div>
 
     </nav>
     );
+  }
 }
 
 export default NavBar;
