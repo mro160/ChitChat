@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Register.css';
 
 class Register extends Component{
 	constructor(props){
@@ -100,12 +101,12 @@ class Register extends Component{
 			
 			<div className='columns is-size-6 is-centered is-vcentered container'>
 				<div className='box is-radiusless column is-two-thirds'>
-					<h1 className='has-text-weight-medium'>Sign Up</h1>
+					<p className='has-text-weight-medium signup-label'>Sign Up</p>
 						{this.registrationError()}
 	  					<form onSubmit={this.Register}>
 				          <div className='field'>
 				            <label>
-				              <span className='has-text-weight-medium'>Email Address</span>
+				              <span className='has-text-weight-light'>Email Address</span>
 				            </label>
 				            <div className='control has-icons-left'>
 				              <input className='input' name='email-address' type='email' value={this.state.emailField} onChange={this.onEmailChange} required/>
@@ -115,7 +116,7 @@ class Register extends Component{
 				            </div>
 				          </div>
 				           <label>
-				           <span className='has-text-weight-medium'>Username</span>
+				           <span className='has-text-weight-light'>Username</span>
 				           </label>
 				            <div className='control has-icons-left'>
 				              <input className='input' name='email-address' type='text' minLength="6" maxLength="14" value={this.state.usernameField} onChange={this.onUsernameChange} required/>
@@ -124,7 +125,7 @@ class Register extends Component{
 							    </span>
 				            </div>
 				           <label>
-				             <span className='has-text-weight-medium'>Password</span>
+				             <span className='has-text-weight-light'>Password</span>
 				           </label>
 				            <div className='control has-icons-left'>
 				            <input className='input' type='password' minLength="6" maxLength="25" value={this.state.passwordField} onChange={this.onPasswordChange} required/>

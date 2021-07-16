@@ -1,13 +1,13 @@
 import React from 'react';
-import './ChatroomSearch.css';  
+import './ChatroomMenu.css';  
 import { Redirect } from 'react-router-dom';
 
 const ChatroomCreate = (props) => {
     if (props.state.user === "") {
       return <Redirect to='/login'/>
     } else return (
-      <div className='pad card'>
-      <h1 className='card-title'>Create New Room</h1>
+      <div className='white-card inner-pad'>
+      <p className='card-title card-label'>Create New Room</p>
        <form onSubmit={props.handleRoomCreateSubmit}>
         <label>
           Room Name

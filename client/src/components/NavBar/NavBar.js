@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
+import logo from '../../assets/chat_bubble.svg';
 
 const Buttons = (props) => {
   if (props.user === ''){
@@ -70,8 +71,9 @@ class NavBar extends Component {
     render(){
     return (
      <nav className='navbar shadow is-fixed-top' role='navigation' aria-label='main navigation'>
-     
-        <a role="button"
+       <div class="navbar-brand">
+          <img className='logo' src={logo} alt="My logo" />
+          <a role="button"
            href="#" 
            className="navbar-burger" 
            aria-label="menu" 
@@ -79,16 +81,21 @@ class NavBar extends Component {
            data-target="navbarBasicExample" 
            onClick={this.toggleMenu}
         >
+          
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
-
+      </div>
+              
       <div id='navbarBasicExample' className={'navbar-menu' + this.state.active}>
-
-        <Link className='navbar-start navbar-item has-text-white has-text-weight-light' to='/' onClick={()=>this.hideMenu()}>
-          Home 
-        </Link>
+       
+      <div className='navbar-start'>
+        
+          <Link className='navbar-item has-text-white has-text-weight-light' to='/' onClick={()=>this.hideMenu()}>
+            Home 
+          </Link>
+      </div>
 
         <ConditionalLink user={this.props.user} linkname={'Dashboard'} pathname={'/dashboard'} hidemenu={this.hideMenu}/>
         <ConditionalLink user={this.props.user} linkname={'Inbox'} pathname={'/chatrooms'} hidemenu={this.hideMenu}/>

@@ -17,11 +17,11 @@ const GetStartedLink = (props) => {
 
 const Home = (props) => {
     return (
-    <div>
-    	<section className='main-content'>
-	    	<div className='is-fluid columns is-vcentered feature'>
-	    		<div className='column is-5 is-offset-1 has-text-grey has-text-weight-light is-size-3 img-container'>
-	    			<div className='card'>
+    <div className='home'>		
+		<section className='hero section is-medium'>
+		<div className='is-fluid img-section'>
+	    		<div className='is-centered columns is-6 is-offset-3 has-text-grey has-text-weight-light is-size-3 img-container'>
+	    			<div className='card column is-6'>
 	    			<div className='card-image'>
 	    				<figure className="image is-5by9">
 					      <img src={CreateRoomImage} alt="Chat Functions Example" />
@@ -29,15 +29,18 @@ const Home = (props) => {
 					  </div>
 	    			</div>
 	    		</div>
-	    		<p className='column is-3 is-offset-1 has-text-white-ter has-text-weight-light is-size-1 has-text-centered'>search for existing chatrooms or create your own
+	    	</div>
+
+			<div className='is-fluid columns'>
+	    		<p className='column is-4 is-offset-4 has-text-white-ter has-text-weight-light is-size-1 has-text-centered'>search for existing chatrooms or create your own
 	    		</p>
 	    	</div>
-	    	
-	    	<div className='is-fluid columns is-centered is-vcentered feature'>
-	    	<p className='column is-3 has-text-white-ter has-text-weight-light is-size-1 has-text-centered'>manage your chatrooms
-	    		</p>
-	    		<div className='column is-5 is-offset-1 has-text-grey has-text-weight-light is-size-3 img-container'>
-	    			<div className='card'>
+		</section>
+
+		<section className='hero section is-medium'>
+		<div className='is-fluid img-section'>
+	    		<div className='is-centered columns is-6 is-offset-3 has-text-grey has-text-weight-light is-size-3 img-container'>
+	    			<div className='card column is-6'>
 	    			<div className='card-image'>
 	    				<figure className="image is-5by9">
 					      <img src={InboxImage} alt="Inbox Menu Example" />
@@ -45,12 +48,19 @@ const Home = (props) => {
 					  </div>
 	    			</div>
 	    		</div>
-	    		
 	    	</div>
 
-	    	<div className='is-fluid columns is-vcentered feature'>
-	    		<div className='column is-5 is-offset-1 has-text-grey has-text-weight-light img-container'>
-	    			<div className='card'>
+			<div className='is-fluid columns'>
+	    		<p className='column is-4 is-offset-4 has-text-white-ter has-text-weight-light is-size-1 has-text-centered'>
+						manage your chatrooms
+	    		</p>
+	    	</div>
+		</section>
+
+		<section className='hero section is-medium'>
+		<div className='is-fluid img-section'>
+	    		<div className='is-centered columns is-6 is-offset-3 has-text-grey has-text-weight-light is-size-3 img-container'>
+	    			<div className='card column is-6'>
 	    			<div className='card-image'>
 	    				<figure className="image is-5by9">
 					      <img src={ChatWindowImage} alt="Messaging Example" />
@@ -58,14 +68,20 @@ const Home = (props) => {
 					  </div>
 	    			</div>
 	    		</div>
-	    		<p className='column is-3 is-offset-1 has-text-white-ter has-text-weight-light is-size-1 has-text-centered'>chat with friends
+	    	</div>
+
+			<div className='is-fluid columns'>
+	    		<p className='column is-4 is-offset-4 has-text-white-ter has-text-weight-light is-size-1 has-text-centered'>
+					chat with friends
 	    		</p>
 	    	</div>
+		</section>
+
 
 	    <div className='container has-text-centered feature'>
 			<GetStartedLink user={props.user}/>
     		</div>
-    	</section>
+
     </div>
    	);
 } 

@@ -1,9 +1,9 @@
 import React from 'react';
-import './ChatroomSearch.css';
+import './ChatroomMenu.css';
 
 const ChatroomSearch = (props) => {
     return (
-      <div className='pad card'>
+      <div className='white-card inner-pad'>
          <h1 className='card-title'>Search for Chatroom</h1>
          <form onSubmit={props.handleRoomSearchSubmit}>
           <div className='field'>

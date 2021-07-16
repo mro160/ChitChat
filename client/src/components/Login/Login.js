@@ -100,12 +100,12 @@ class Login extends Component{
 			
 			<div className='columns is-centered is-vcentered container'>
 				<div className='box is-radiusless column is-two-thirds'>
-					<h1 className='has-text-weight-medium'>Sign In</h1>
+					<p className='has-text-weight-medium signin-label'>Sign In</p>
 						{this.loginError()}
 	  					<form onSubmit={this.Login}>
 				          <div className='field'>
 				            <label>
-				              <span className='has-text-weight-medium'>Email Address</span>
+				              <span className='has-text-weight-light'>Email Address</span>
 				            </label>
 				            <div className='control has-icons-left'>
 				              <input className='input' name='email-address' type='email' value={this.state.emailField} onChange={this.onEmailChange} required/>
@@ -114,8 +114,9 @@ class Login extends Component{
 							    </span>
 				            </div>
 				          </div>
+						  <div className='field'>
 				           <label>
-				             <span className='has-text-weight-medium'>Password</span>
+				             <span className='has-text-weight-light'>Password</span>
 				           </label>
 				            <div className='control has-icons-left'>
 				            <input className='input' type='password' value={this.state.passwordField} onChange={this.onPasswordChange} required/>
@@ -123,6 +124,7 @@ class Login extends Component{
 			                  <i className="fa fa-lock"></i>
 			                </span>
 				          </div>
+						  </div>
 				              <input className='button' type='submit' value='Submit'/>
 				          </form>
 

@@ -5,20 +5,17 @@
 
 @media only screen and (min-width: 1023px){
 	.navbar-end{
-		padding-right: 35rem;
+		margin-left: 45rem;
 	}
 
 	.navbar-start{
-		padding-left: 35rem;
+		margin-left: 25rem;
 	}
 
 }
 
-
-
-.navbar-menu{
-	background: #123;
-}
-
-.navbar-burger{
+.logo{
+	height: 30px;
+	width: 30px;
+	margin: auto 15px;
 }

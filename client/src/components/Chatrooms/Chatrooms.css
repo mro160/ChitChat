@@ -17,6 +17,12 @@
 
 .inbox-menu {
 	height: 100vh;
-	padding: 1rem;
+	padding: 1.5rem;
 	padding-top: 150px; 
+}
+
+@media only screen and (min-height : 769px) {
+	.inbox-menu {
+		padding: 150px;
+	}
 }
