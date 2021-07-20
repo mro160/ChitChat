@@ -21,6 +21,7 @@ register = require('./routes/register.js');
 app.use(express.urlencoded({extended: false}));
 app.use(express.json({extended: true}));
 
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 app.use('/users', users);
@@ -28,7 +29,9 @@ app.use('/chatrooms', chatrooms);
 app.use('/login', login);
 app.use('/register', register);
 
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.get('/*', (req, res) => {
+	res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.use((err, req, res, next) => {
 	console.error(err.message);
