@@ -20,7 +20,7 @@ register = require('./routes/register.js');
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json({extended: true}));
-
+app.use(cors);
 
 app.use('/users', users);
 app.use('/chatrooms', chatrooms);
