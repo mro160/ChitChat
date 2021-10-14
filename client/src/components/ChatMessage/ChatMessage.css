@@ -1,5 +1,5 @@
-.msg div {
-
+.sender{
+	text-align: center;
 }
 
 .msg {
@@ -38,7 +38,7 @@
 	word-break: break-all;
 	white-space: normal;
 	padding: 1rem;
-	min-width: 100px;
+	min-width: 110px;
 }
 
 .txt{

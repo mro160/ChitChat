@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavBar.css';
 import logo from '../../assets/chat_bubble.svg';
 
-const Buttons = (props) => {
-  if (props.user === ''){
+const Buttons = ({user, hideMenu, logOut}) => {
+  if (!user){
     return (
       <div className='navbar-item'>
       <div className='navbar-item'>       
-        <Link to='/register' className='has-text-white has-text-weight-light pl-2' onClick={() =>props.hidemenu()}>
+        <Link to='/register' className='has-text-white has-text-weight-light pl-2' onClick={hideMenu}>
          Sign up
         </Link>
       </div>
       <div className='navbar-item'>
-        <Link to='/login' className='has-text-white has-text-weight-light' onClick={()=>props.hidemenu()}>
+        <Link to='/login' className='has-text-white has-text-weight-light' onClick={hideMenu}>
           Log in
         </Link>
       </div>
@@ -21,7 +21,7 @@ const Buttons = (props) => {
     );
   } else return (
     <div className="navbar-item">
-      <Link to='/' className='has-text-white has-text-weight-light' onClick={props.logOut} >
+      <Link to='/' className='has-text-white has-text-weight-light' onClick={logOut} >
         Logout
       </Link>
     </div>
@@ -29,57 +29,46 @@ const Buttons = (props) => {
 }
 
 
-const ConditionalLink = (props) => {
-  if (props.user !== ''){
+const ConditionalLink = ({user, pathname, hideMenu, linkname}) => {
+  if (user){
     return (
-      <Link to={{ pathname: props.pathname }} className='navbar-item has-text-white has-text-weight-light' onClick={()=>props.hidemenu()} >
-        {props.linkname}
+      <Link to={{ pathname: pathname }} className='navbar-item has-text-white has-text-weight-light' onClick={hideMenu} >
+        {linkname}
       </Link>
     );
   } else return '';
 }
 
 
-class NavBar extends Component {
-    constructor(props){
-    super(props);
-      this.state = {
-        active: ''
-      }
-    }
+const NavBar = ({user, logOut}) => {
+  const [active, setActive] = useState('')
 
-  toggleMenu = (e) => {
-    if (this.state.active === ""){
-      this.showMenu(e);
+  const toggleMenu = (e) => {
+    if (active === ""){
+      showMenu(e);
     } else {
-      this.hideMenu(e);
+      hideMenu(e);
     }
   } 
 
-  showMenu = () => {
-
-    this.setState({
-      active: 'is-active'
-    })
+  const showMenu = () => {
+    setActive('is-active')
   }
 
-  hideMenu = () => {
-    this.setState({
-        active: ''
-    })
+  const hideMenu = () => {
+    setActive('')
   }
-    render(){
+
     return (
      <nav className='navbar shadow is-fixed-top' role='navigation' aria-label='main navigation'>
-       <div class="navbar-brand">
-          <img className='logo' src={logo} alt="My logo" />
+       <div className="navbar-brand">
           <a role="button"
            href="#" 
            className="navbar-burger" 
            aria-label="menu" 
            aria-expanded="false" 
            data-target="navbarBasicExample" 
-           onClick={this.toggleMenu}
+           onClick={toggleMenu}
         >
           
           <span aria-hidden="true"></span>
@@ -88,24 +77,24 @@ class NavBar extends Component {
         </a>
       </div>
               
-      <div id='navbarBasicExample' className={'navbar-menu' + this.state.active}>
+      <div id='navbarBasicExample' className={'navbar-menu' + active}>
        
-      <div className='navbar-start'>
-        
-          <Link className='navbar-item has-text-white has-text-weight-light' to='/' onClick={()=>this.hideMenu()}>
-            Home 
+      <div className='navbar-start'>   
+          <Link className='navbar-item' to='/' onClick={()=> hideMenu()}>
+            <img className='logo' src={logo} alt="My logo" />
           </Link>
       </div>
 
-        <ConditionalLink user={this.props.user} linkname={'Dashboard'} pathname={'/dashboard'} hidemenu={this.hideMenu}/>
-        <ConditionalLink user={this.props.user} linkname={'Inbox'} pathname={'/chatrooms'} hidemenu={this.hideMenu}/>
-        <ConditionalLink user={this.props.user} linkname={'Manage Rooms'} pathname={'/manage'} hidemenu={this.hideMenu}/>
+        
      
              <div className='navbar-end'>
+              <ConditionalLink user={user} linkname={'Dashboard'} pathname={'/dashboard'} hidemenu={hideMenu}/>
+              <ConditionalLink user={user} linkname={'Inbox'} pathname={'/inbox'} hidemenu={hideMenu}/>
+              <ConditionalLink user={user} linkname={'Manage Rooms'} pathname={'/manage'} hidemenu={hideMenu}/>
               <Buttons
-                hidemenu={this.hideMenu} 
-                user={this.props.user}
-                logOut={this.props.logOut}
+                hidemenu={hideMenu} 
+                user={user}
+                logOut={logOut}
               />
           </div>
 
@@ -113,7 +102,6 @@ class NavBar extends Component {
 
     </nav>
     );
-  }
 }
 
 export default NavBar;

@@ -3,15 +3,30 @@
 }
 
 
-@media only screen and (min-width: 1023px){
+@media only screen and (min-width: 1300px){
+	.navbar-menu{
+		max-width: 1300px;
+		margin: 0 auto;
+	}
+
 	.navbar-end{
 		margin-left: 45rem;
 	}
 
 	.navbar-start{
-		margin-left: 25rem;
+		/* margin-left: 25rem; */
 	}
 
+}
+
+@media only screen and (max-width: 1300px){
+	.navbar-end{
+		margin-left: 0;
+	}
+
+	.navbar-start{
+		/* margin-left: 25rem; */
+	}
 }
 
 .logo{

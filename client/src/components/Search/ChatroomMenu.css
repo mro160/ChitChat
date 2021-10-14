@@ -13,7 +13,6 @@ input:focus {
 }
 
 .card-title {
-	font-weight: 500;
 	font-size: 30px;
 	padding-bottom: 20px;
 }
@@ -24,6 +23,10 @@ input:focus {
 
 .white-card{
 	background-color: white;
+}
+
+.input-label {
+	font-size: 18px;
 }
 
 

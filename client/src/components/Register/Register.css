@@ -6,7 +6,8 @@
 }
 
 .container{
-	height: 75vh;
+	height: 100vh;
+	padding-top: 350px;
 }
 
 .errormessage{
@@ -23,8 +24,12 @@
 }
 
 @media only screen and (max-width: 769px){
-    .registration-form{
+    .container{
         padding-top: 150px;
-        margin: 0px 20px;
+        margin: 0px 50px;	
     }
+}
+
+.input-label{
+	font-size: 18px;
 }

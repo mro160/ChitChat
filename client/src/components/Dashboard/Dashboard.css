@@ -1,0 +1,16 @@
+.dashboard-container {
+	vertical-align: center;
+	height: 100vh;
+	padding-top: 300px;
+}
+
+.create-chat-container{
+	width:60%;
+	min-width: 100px;
+}
+
+.user-heading {
+	font-size: 48px;
+	color: white;
+	text-align: center;
+}

@@ -7,7 +7,7 @@ const ChatMessage = (props) => {
   if (props.message.username === props.user){
     return (
         <div className='outgoing' >
-        <div className=''>{props.message.username}</div>
+        <div className='sender'>{props.message.username}</div>
         
         <div className="box has-background-link has-text-light chat-bubble is-paddingless">
         <div className='txt' key={props.message.id}>
@@ -22,7 +22,7 @@ const ChatMessage = (props) => {
     );
   } else return (
     <div className='incoming-message' key={props.message.id}>
-        <div className='incoming'>{props.message.username}</div>
+        <div className='incoming sender'>{props.message.username}</div>
         
         <div className="box has-background-grey has-text-light chat-bubble is-paddingless">
         <div className='txt'>

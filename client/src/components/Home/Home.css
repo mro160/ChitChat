@@ -1,26 +1,35 @@
 .button{
-	background: #48c710;
+	background: #3ca972;
 	border: none ;
 	color: white;
 }
 
-.feature {
+.button:hover{
+	background: #208a55;
+	color: white;
+}
+
+/* .feature {
 	min-height: 50rem;
 	margin-top: 15rem;
 	margin-bottom: 15rem;
+} */
+
+.cta-container {
+	padding: 50px;
 }
 
-.card{
-	padding: 3px;
+.cta-get-started{
+	background: #3ca972;
+}
+
+.cta-get-started:hover {
+	background: #208a55;
 }
 
 .img-container{
 	padding-left: 2rem;
 	padding-right: 2rem;
-}
-
-.home{
-	margin-top: 10rem;
 }
 
 .img-section{

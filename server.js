@@ -1,14 +1,13 @@
 const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
-const io = require('socket.io')(http, { path:'/sockets' });
+const io = require('socket.io')(http, { path:'/sockets', transports: ["websocket"] });
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const pgp = require('pg-promise')();
 const path = require('path');
 const db = require('./db.js');
 
-const saltRounds = 10;
 
 const port = process.env.PORT || 3001;
 app.set('port', port);
@@ -18,6 +17,7 @@ chatrooms = require('./routes/chatrooms.js');
 login = require('./routes/login.js');
 register = require('./routes/register.js');
 
+// app.use(cors());
 app.use(express.urlencoded({extended: false}));
 app.use(express.json({extended: true}));
 
@@ -37,18 +37,21 @@ app.use((err, req, res, next) => {
 });
 
 io.on('connection', (socket) => {
+	console.log('connected')
 	socket.on('enter', (room, username, id) => {
 		try	{
 			socket.join(room);
+			console.log('entered room')
 			socket.emit('enter success', room, username, id);
 		} catch (err) {
-				socket.emit('enter failed');
+			socket.emit('enter failed');
 		}
 	});
 
 
 
 	socket.on('create room', (room, username) => {
+			console.log('created room')
 			socket.emit('room create success', room, username);
 	});		
 
@@ -58,20 +61,25 @@ io.on('connection', (socket) => {
 			date_created: date,
 			username: user
 		};
-		io.in(room).emit('chat message', message);
+		console.log('Room', room)
+		io.to(room).emit('chat message', message);
 	});
 
 	socket.on('exit', (room)=> {
 		socket.leave(room);
+		console.log('left room')
 	});
 
 	socket.on('disconnect', ()=> {
+		console.log('socket disconnected')
 	})
 });
 
 
 app.get('*', (req, res) => {
-	res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+	if (process.env.NODE_ENV == 'prod'){
+		res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+	}
 });
 
 

@@ -5,5 +5,23 @@
 }
 
 .App{
-	padding-bottom: 6rem;
+	padding-top: 50px;
+	padding-bottom: 65px;
+	max-width: 1300px;
+	margin: 0 auto;
+}
+
+.box {
+	padding: 25px 20px;
+	border: 1px solid #e4e7f0;
+}
+
+input:focus, textarea:focus, select:focus{
+	outline: none;
+}
+
+@media only screen and (max-width: 768px) {
+	.dashboard-container {
+		padding-top: 0px;
+	}
 }

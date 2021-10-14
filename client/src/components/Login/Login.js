@@ -1,114 +1,50 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { login } from '../../services/login'
 import './Login.css';
+import { useHistory } from 'react-router-dom';
 
-class Login extends Component{
-	constructor(props){
-		super(props);
-		this.state = {
-			emailField : '',
-			passwordField: '',
-			usernameField: '',
-			error: false
-		}
-	}
-
-	onPasswordChange = (event) =>{
-		this.setState({
-			passwordField : event.target.value	
-		});
-	}
-
-	onEmailChange = (event) => {
-		this.setState({
-			emailField : event.target.value
-		});
-	}
-
-	onUsernameChange = (event) => {
-		this.setState({
-			usernameField : event.target.value
-		});
-	}
-
-	loginError = () => {
-		if (this.state.error){
-			return (
-				<p className='errormessage'>Incorrect email and password</p>
-			);
-		}
-	}
-	Login = (event) =>{
-		event.preventDefault();
-		
-		fetch('/login', {
-			method : 'POST',
-			headers: {'Content-Type' : 'application/json'},
-			body : JSON.stringify({
-				email    : this.state.emailField,
-				password : this.state.passwordField, 
-			})
-		})
-		.then(res => res.json())
-		.then(user => {
-			if (user.id){
-				this.props.loadUser(user);
-				//fetch all chatrooms where user is a member and store in state	
-			} else throw Error();
-			return user;
-		})
-		.then((user) => {
-			let inbox = [];
-			let usersCreatedRooms = [];
-
-			fetch(`/users/${user.id}/subscriptions`, {
-					method : 'GET',
-					headers: {'Content-Type' : 'application/json'},
-			})
-			.then(res => res.json())
-			.then(chatrooms => {
-				inbox = chatrooms;
-			})
-			.then(() =>{
-				fetch(`/users/${user.id}/chatrooms`, {
-						method : 'GET',
-						headers: {'Content-Type' : 'application/json'},
-				})
-				.then(res => res.json())
-				.then(rooms => {
-					usersCreatedRooms = rooms;
-					this.props.loadChatrooms(inbox, usersCreatedRooms);
-				})
-				.catch(err => console.log(err));
-			})
-			.catch(err => console.log(err));
-		})
-		.then(() => {
-			this.props.redirect('/dashboard');
-		})
-		.catch(err => {
-			this.setState({
-				error: true
-			})
+const Login = ({loadUser}) => {
+	let history = useHistory()
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+	const [error, setError] = useState(false)
+	
+	const Login = async (event) => {
+		event.preventDefault()
+		try {
+			const u = await login(email, password)
+			if (u){
+				await loadUser(u)
+				history.push('dashboard')
+			}
+		} catch (err) {
+			setError(true)
 			console.log(err)
-		});
+		}
 	}
 
-
-	render(){
+	const loginError = () => {
+		if (error) {
+			return (
+			<p className='errormessage'>Incorrect email and password</p>
+		);
+		}
+		
+	}
 		return (
-			<div className='container login-form'>
+			<div className='container login-form animate__animated animate__fadeIn'>
 			
-			<div className='columns is-centered is-vcentered container'>
-				<div className='box is-radiusless column is-two-thirds'>
-					<p className='has-text-weight-medium signin-label'>Sign In</p>
-						{this.loginError()}
-	  					<form onSubmit={this.Login}>
+			<div className='columns is-size-6 is-centered'>
+				<div className='box column is-half'>
+					<p className='signin-label'>Sign In</p>
+						{loginError()}
+	  					<form onSubmit={Login}>
 				          <div className='field'>
 				            <label>
-				              <span className='has-text-weight-light'>Email Address</span>
+				              <span className='has-text-weight-light input-label'>Email Address</span>
 				            </label>
 				            <div className='control has-icons-left'>
-				              <input className='input' name='email-address' type='email' value={this.state.emailField} onChange={this.onEmailChange} required/>
+				              <input className='input' name='email-address' type='email' value={email} onChange={(e) => setEmail(e.target.value)} required/>
 				               <span className="icon is-small is-left">
 							      <i className="fas fa-envelope"></i>
 							    </span>
@@ -116,10 +52,10 @@ class Login extends Component{
 				          </div>
 						  <div className='field'>
 				           <label>
-				             <span className='has-text-weight-light'>Password</span>
+				             <span className='has-text-weight-light input-label'>Password</span>
 				           </label>
 				            <div className='control has-icons-left'>
-				            <input className='input' type='password' value={this.state.passwordField} onChange={this.onPasswordChange} required/>
+				            <input className='input' type='password' value={password} onChange={(e) => setPassword(e.target.value)} required/>
 				            <span className="icon is-small is-left">
 			                  <i className="fa fa-lock"></i>
 			                </span>
@@ -134,7 +70,6 @@ class Login extends Component{
   			<br />
 		</div>
 		);
-	}
 }
 
 
