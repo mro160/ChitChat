@@ -1,5 +1,7 @@
 import io from "socket.io-client";
-let socket = io('ws://localhost:3001', 
+
+const url = process.env.REACT_APP_API || window.location.host
+let socket = io(url, 
 { 
     path: "/sockets", 
     transports : ["websocket"] 

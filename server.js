@@ -8,7 +8,6 @@ const pgp = require('pg-promise')();
 const path = require('path');
 const db = require('./db.js');
 
-
 const port = process.env.PORT || 3001;
 app.set('port', port);
 
@@ -17,7 +16,7 @@ chatrooms = require('./routes/chatrooms.js');
 login = require('./routes/login.js');
 register = require('./routes/register.js');
 
-// app.use(cors());
+app.use(cors());
 app.use(express.urlencoded({extended: false}));
 app.use(express.json({extended: true}));
 
