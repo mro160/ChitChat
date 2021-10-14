@@ -29,6 +29,7 @@ const Buttons = ({user, hideMenu, logOut}) => {
 }
 
 
+
 const ConditionalLink = ({user, pathname, hideMenu, linkname}) => {
   if (user){
     return (
@@ -60,10 +61,10 @@ const NavBar = ({user, logOut}) => {
   }
 
     return (
-     <nav className='navbar shadow is-fixed-top' role='navigation' aria-label='main navigation'>
+     <nav className='navbar is-dark shadow is-fixed-top' role='navigation' aria-label='main navigation'>
        <div className="navbar-brand">
           <a role="button"
-           href="#" 
+          //  href="" 
            className="navbar-burger" 
            aria-label="menu" 
            aria-expanded="false" 
@@ -88,11 +89,11 @@ const NavBar = ({user, logOut}) => {
         
      
              <div className='navbar-end'>
-              <ConditionalLink user={user} linkname={'Dashboard'} pathname={'/dashboard'} hidemenu={hideMenu}/>
-              <ConditionalLink user={user} linkname={'Inbox'} pathname={'/inbox'} hidemenu={hideMenu}/>
-              <ConditionalLink user={user} linkname={'Manage Rooms'} pathname={'/manage'} hidemenu={hideMenu}/>
+              <ConditionalLink user={user} linkname={'Dashboard'} pathname={'/dashboard'} hideMenu={hideMenu}/>
+              <ConditionalLink user={user} linkname={'Inbox'} pathname={'/inbox'} hideMenu={hideMenu}/>
+              <ConditionalLink user={user} linkname={'Manage Rooms'} pathname={'/manage'} hideMenu={hideMenu}/>
               <Buttons
-                hidemenu={hideMenu} 
+                hideMenu={hideMenu} 
                 user={user}
                 logOut={logOut}
               />
